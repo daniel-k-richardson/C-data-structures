@@ -229,7 +229,6 @@ void merge(List *self, List *other)
 		insert_in_order(self, current->data);
 		current = current->next;
 	}
-	
 	destroy(other);
 }
 
