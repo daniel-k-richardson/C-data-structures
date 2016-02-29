@@ -26,8 +26,8 @@ void delete_item(List *, int);
 
 int main()
 {
-	int number[] = {20, 4, 8, 12, 16, 5, 9, 0, 30, 55};		// used to fill my_list
-	int number2[] = {21, 9, 49, 70, 1, 9, 3, 2, 80, 200};	// used to fill my_list2
+	int number[] = {20, 4, 8, 12, 16, 5, 9, 0, 30, 55};		// used to fill merge_list1
+	int number2[] = {21, 9, 49, 70, 1, 9, 3, 2, 80, 200};	// used to fill merge_list2
 	
 	/* two lists, used to test functions */
 	List merge_list1 = NULL;	// used to test merge() with merge_list2
@@ -41,13 +41,16 @@ int main()
 		insert_in_order(&merge_list2, number2[i]);
 	}
 	
+	// test that merge() works and print it to console.
 	merge(&merge_list1, &merge_list2);
 	traverse(merge_list1);
 	
+	// test that reverse() works and print it to console.
 	printf("\nReversed list\n\n");
 	reverse_list = reverse(merge_list1);
 	traverse(reverse_list);
 	
+	//test that delete_item() works.
 	delete_item(&reverse_list, 12);
 	delete_item(&reverse_list, 11);
 	
@@ -55,12 +58,12 @@ int main()
 	return EXIT_SUCCESS;
 }
 
-/* Inserts int values (data) into a link-list in order it receives them */
+/* Inserts data (int values) into a link-list in order it receives them */
 void insert(List *self, int data)
 {
 	List new_node = malloc(sizeof(*new_node));
 	
-	/* check to ensure memory has successfully been allocated, otherwise exit program */
+	/* check to ensure memory has successfully been allocated */
 	if (!new_node)
 	{
 		fprintf(stderr, "Error allocating memory\n");
@@ -71,13 +74,13 @@ void insert(List *self, int data)
 	*self = new_node;
 }
 
-/* searches the linked-list for the node with the same data as the value entered. if found
+/* searches the linked-list for the node with the target's value. if found
    remove that node from the list. */
-void delete_item(List *self, int data)
+void delete_item(List *self, int target)
 {
 	List current = *self;
 	List previous = NULL;
-	bool has_found_target = false;	// flag variable, if false display a message to user.
+	bool has_found_target = false;	// flag variable, display appropriate message.
 	
 	while (current)
 	{
@@ -92,7 +95,8 @@ void delete_item(List *self, int data)
 				current = *self;
 				has_found_target = true;
 			}
-			/* otherwise, it is not the first node so remove from middle of end of list */
+			/* otherwise, general case: just link previous's next to current's next
+				and free current */
 			else
 			{
 				previous->next = current->next;
@@ -101,7 +105,7 @@ void delete_item(List *self, int data)
 				has_found_target = true;
 			}
 		}
-		/* if the element is not found, traverse through the rest of the list */
+		/* traverse through the rest of the list if not found */
 		else
 		{
 			previous = current;
@@ -119,7 +123,7 @@ void delete_item(List *self, int data)
 	}
 }
 
-/* prints out the int values (data) from each node in the linked-list */
+/* prints out the data (int values) from each node in the linked-list */
 void traverse(List self)
 {
 	List current = self;
@@ -139,7 +143,7 @@ void insert_in_order(List *self, int data)
 	
 	List new_node = malloc(sizeof(*new_node));
 	
-	/* has the memory been allocated ok? if not exit program */
+	/* check that memory has been successfully allocated */
 	if (!new_node)
 	{
 		fprintf(stderr, "Issue allocating memory\n");
@@ -148,9 +152,9 @@ void insert_in_order(List *self, int data)
 	new_node->data = data;
 	new_node->next = NULL;
 	
-	/* checks if the current node's data value is smaller data's value, if the data is 
-	 less than the current nodes data value keep traversing until the node's data is
-	 greater than or equal to data's value */
+	/* checks if the current node's data value is smaller than the data's value, if the data 
+	   is less than the current nodes data value, keep traversing until the node's data is
+	   greater than or equal to data's value */
 	while (current && current->data < data)
 	{
 		previous = current;
@@ -159,13 +163,14 @@ void insert_in_order(List *self, int data)
 	
 	/* check if the new data should be entered at the start of the list, either because
 	   it's the first data value being entered, or the data's value is smaller than the 
-	   list's first element */
+	   list's first data */
 	if (current == *self)
 	{
 		new_node->next = current;
 		*self = new_node;
 	}
-	/* if it does not go into the first element of the list, add to middle/end of list */
+	/* Otherwise, it's the general case just (just add it to the end) until it has to be
+	   moved. */
 	else
 	{
 		new_node->next = current;
@@ -195,11 +200,14 @@ List reverse(List self)
 		new_current->data = current->data;
 		new_current->next = NULL;
 		
-		/* if the first item being added to the list if the first element. */
+		/* if the first item being added to the list if the first. */
 		if (!new_list)
 		{
 			new_list = new_current;
 		}
+		/* Otherwise, general case: just keep adding to the front and link the new node
+		   to the current node's next and update the new_list to point to the new current
+		   node. */
 		else
 		{
 			new_current->next = new_list;
