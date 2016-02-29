@@ -1,5 +1,5 @@
 /*
- *	Author: Daniel Richardson. Note, some of the code froms from kit205 lecture slides.
+ *	Author: Daniel Richardson. Note, some of the code froms from kit205 lecture slides. 
  *	Date: 29/2/2016
  *	Purpose: Mostly just reference material and practice for kit205. This is a linked-list
  * 	complete with different operations that can be done to linked lists.
