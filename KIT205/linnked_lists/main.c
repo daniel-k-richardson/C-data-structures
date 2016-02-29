@@ -26,7 +26,7 @@ void delete_item(List *, int);
 
 int main()
 {
-	int number[] = {20, 4, 8, 12, 16, 5, 9, 0, 30, 55};	// used to fill merge_list1
+	int number[] = {20, 4, 8, 12, 16, 5, 9, 0, 30, 55};	    // used to fill merge_list1
 	int number2[] = {21, 9, 49, 70, 1, 9, 3, 2, 80, 200};	// used to fill merge_list2
 	
 	/* two lists, used to test functions */
