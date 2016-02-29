@@ -6,7 +6,7 @@
 //  This is my first attemp at creating a binary search tree.
 //  I created all the functions that could be done on a bin searh tree.
 //  This is not perfect, I will be making improvements as I learn more.
-//  This is a personal reference for myself.
+//  This is for a personal reference.
 
 #include <stdio.h>
 #include <stdlib.h>
