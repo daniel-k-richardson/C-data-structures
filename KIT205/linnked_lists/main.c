@@ -200,7 +200,7 @@ List reverse(List self)
 		new_current->data = current->data;
 		new_current->next = NULL;
 		
-		/* if the first item being added to the list if the first. */
+		/* if the first item being added to the list is the first. */
 		if (!new_list)
 		{
 			new_list = new_current;
