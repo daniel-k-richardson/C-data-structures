@@ -75,7 +75,7 @@ void insert(List *self, int data)
 }
 
 /* searches the linked-list for the node with the target's value. if found
-   remove that node from the list. */
+ * remove that node from the list. */
 void delete_item(List *self, int target)
 {
 	List current = *self;
@@ -96,7 +96,7 @@ void delete_item(List *self, int target)
 				has_found_target = true;
 			}
 			/* otherwise, general case: just link previous's next to current's next
-				and free current */
+			 * and free current */
 			else
 			{
 				previous->next = current->next;
@@ -153,8 +153,8 @@ void insert_in_order(List *self, int data)
 	new_node->next = NULL;
 	
 	/* checks if the current node's data value is smaller than the data's value, if the data 
-	   is less than the current nodes data value, keep traversing until the node's data is
-	   greater than or equal to data's value */
+	 * is less than the current nodes data value, keep traversing until the node's data is
+	 * greater than or equal to data's value */
 	while (current && current->data < data)
 	{
 		previous = current;
@@ -162,15 +162,15 @@ void insert_in_order(List *self, int data)
 	}
 	
 	/* check if the new data should be entered at the start of the list, either because
-	   it's the first data value being entered, or the data's value is smaller than the 
-	   list's first data */
+	 * it's the first data value being entered, or the data's value is smaller than the 
+	 * list's first data */
 	if (current == *self)
 	{
 		new_node->next = current;
 		*self = new_node;
 	}
 	/* Otherwise, it's the general case just (just add it to the end) until it has to be
-	   moved. */
+	 * moved. */
 	else
 	{
 		new_node->next = current;
@@ -179,7 +179,7 @@ void insert_in_order(List *self, int data)
 }
 
 /* reverses a list, by taking a list and adding all nodes to the front. Then returns the
-   new list back to the caller */
+ * new list back to the caller */
 List reverse(List self)
 {
 	List new_list = NULL;
@@ -206,8 +206,8 @@ List reverse(List self)
 			new_list = new_current;
 		}
 		/* Otherwise, general case: just keep adding to the front and link the new node
-		   to the current node's next and update the new_list to point to the new current
-		   node. */
+		 * to the current node's next and update the new_list to point to the new current
+		 * node. */
 		else
 		{
 			new_current->next = new_list;
