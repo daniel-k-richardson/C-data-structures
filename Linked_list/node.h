@@ -16,3 +16,4 @@ void init_node(Node *self, int value);
 int get_node_value(Node self);
 Node get_next_node(Node self);
 void set_next_node(Node current, Node next);
+void free_node(Node self);

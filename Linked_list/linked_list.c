@@ -55,17 +55,38 @@ void add_element(linked_list *self, int value)
     current = (*self)->head;
 	init_node(&new_node, value);
 	
-	if (is_empty((*self)))
-	{
+	if (is_empty((*self))) {
         (*self)->head = new_node;
         (*self)->tail = (*self)->head;
-	}
-	else
-	{
+	} else {
         set_next_node((*self)->tail, new_node);
         (*self)->tail = get_next_node((*self)->tail);
 
 	}
+}
+
+linked_list delete_item(linked_list self, int target)
+{
+    Node current = self->head;
+    Node previous = NULL;
+    
+    while (current != NULL) {
+        if (get_node_value(current) == target) {
+            if (current == self->head) {
+                self->head = get_next_node(current);
+                free_node(current);
+            } else if (current == self->tail) {
+                self->tail = previous;
+                free_node(previous);
+            } else {
+                set_next_node(get_next_node(previous), get_next_node(current));
+                free_node(current);
+            }
+        }
+        previous = current;
+        current = get_next_node(current);
+    }
+    return self;
 }
 
 /* 
@@ -76,8 +97,7 @@ void traverse(linked_list self)
 {
 	Node current = self->head;
 	
-	while (current != NULL)
-	{
+	while (current != NULL) {
 		printf("The value inside the node is \"%d\"\n", get_node_value(current));
 		current = get_next_node(current);
 	}

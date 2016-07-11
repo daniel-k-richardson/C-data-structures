@@ -19,6 +19,15 @@ int main()
 	{
 		add_element(&list, i);
 	}
+    
+    // Print values to the console.
+    traverse(list);
+    
+    for (int i = 10; i < 20; i++)
+    {
+        list = delete_item(list, i);
+    }
+    
 	
 	// Print values to the console.
 	traverse(list);

@@ -15,7 +15,7 @@ struct Node
 };
 
 /* Create a new node, set the value of the node and set its next to NULL. */
-void init_node(Node *n, int value)
+void init_node(Node *self, int value)
 {
 	// Initialise and dynamically allocate memory for a new node. 
     Node new_node = NULL;
@@ -30,7 +30,7 @@ void init_node(Node *n, int value)
 	new_node->next = NULL;
 	
 	// Assign (or point) n to the new_node that has been initialised.
-	(*n) = new_node;
+	(*self) = new_node;
 }
 
 /* Return the value of the node passed in as its argument. */
@@ -40,13 +40,20 @@ int get_node_value(Node n)
 }
 
 /* Return the current node (passed in as an argument) and return its next. */
-Node get_next_node(Node n)
+Node get_next_node(Node self)
 {
-	return n->next;
+	return self->next;
 }
 
 /* Point the current node's next field to the node "next". */
 void set_next_node(Node current, Node next)
 {
 	current->next = next;
+}
+
+void free_node(Node self)
+{
+    self->next = NULL;
+    free(self);
+    self = NULL;
 }
