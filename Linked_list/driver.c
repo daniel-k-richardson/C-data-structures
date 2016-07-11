@@ -10,25 +10,20 @@
 
 int main()
 {
-    linked_list list;		// A list that will contain our data.
-    
+    linked_list list;           // A list that will contain our data.
     linked_list_init(&list);	// Initialise the list.
     
     // Used for connivance to populate the list with values.
-    for (int i = 0; i < 20; i++)
-    {
+    for (int i = 0; i < 20; i++) {
         add_element(&list, i);
     }
     
     // Print values to the console.
     traverse(list);
     
-    for (int i = 10; i < 20; i++)
-    {
+    for (int i = 10; i < 20; i++) {
         list = delete_item(list, i);
     }
-    
-    
     // Print values to the console.
     traverse(list);
     
