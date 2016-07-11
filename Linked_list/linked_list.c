@@ -15,17 +15,15 @@ struct linked_list_int
 };
 
 /* Create and initialise a linked list. */
-void linked_list_init(linked_list *l)
+void linked_list_init(linked_list *self)
 {
-    // Initialise and dynamically create a new list in memory.
-    linked_list new_list = NULL;
-    
-    if ((new_list = malloc(sizeof(*new_list))) == NULL ) {
+    if ((*self = malloc(sizeof(*(*self)))) == NULL ) {
         perror("Error: could not allocate memory for list\n");
         exit(EXIT_FAILURE);
     }
-    new_list->head = NULL;
-    new_list->tail = NULL;
+    (*self)->head = NULL;
+    (*self)->tail = NULL;
+    
 }
 
 /* Check whether or not the list is empty. */
