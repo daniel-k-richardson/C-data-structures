@@ -1,14 +1,14 @@
 /* Author: Daniel Richardson
  * Date: 24th November 2015
  *
- *	Purpose: these two libraries are going to be used through the program, 
- *	so include them here and just include "node_lib.h" to all other 
- *	source files for connivance.	
+ *	Purpose: these two libraries are going to be used through the program,
+ *	so include them here and just include "node_lib.h" to all other
+ *	source files for connivance.
  */
 #include <stdio.h>
 #include <stdlib.h>
 
-// a convenient way to avoid adding 'struct node_init *' every time. 
+// a convenient way to avoid adding 'struct node_init *' every time.
 typedef struct Node *Node;
 
 // function declarations we want to be able to use.

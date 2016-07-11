@@ -1,9 +1,9 @@
 
-/* 
+/*
  * Author: Daniel Richardson
  * Date: 24th November 2015
  * Purpose: API for the 'linked_listDriver.c'
-*/
+ */
 
 #include <stdbool.h>
 
