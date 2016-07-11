@@ -31,8 +31,7 @@ void linked_list_init(linked_list *l)
 /* Check whether or not the list is empty. */
 bool is_empty(linked_list self)
 {
-    if (self->head == NULL)
-    {
+    if (self->head == NULL) {
         return true;
     }
     return false;

@@ -5,6 +5,10 @@
  *	so include them here and just include "node_lib.h" to all other
  *	source files for connivance.
  */
+
+#ifndef NODE_H
+#define NODE_H
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -17,3 +21,5 @@ int get_node_value(Node self);
 Node get_next_node(Node self);
 void set_next_node(Node current, Node next);
 void free_node(Node self);
+
+#endif

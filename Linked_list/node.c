@@ -24,11 +24,9 @@ void init_node(Node *self, int value)
         perror("Error: allocation of new node failed\n");
         exit(EXIT_FAILURE);
     }
-    
     // Initialise the fields of the node.
     new_node->value = value;
     new_node->next = NULL;
-    
     // Assign (or point) n to the new_node that has been initialised.
     (*self) = new_node;
 }

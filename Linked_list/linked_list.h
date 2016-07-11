@@ -5,6 +5,9 @@
  * Purpose: API for the 'linked_listDriver.c'
  */
 
+#ifndef LINKED_LIST_H
+#define LINKED_LIST_H
+
 #include <stdbool.h>
 
 struct linked_list_int;
@@ -14,3 +17,5 @@ void linked_list_init(linked_list *l);
 void add_element(linked_list *l, int value);
 void traverse(linked_list l);
 linked_list delete_item(linked_list self, int target);
+
+#endif
