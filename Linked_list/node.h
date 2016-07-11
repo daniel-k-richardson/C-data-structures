@@ -8,14 +8,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// forward declaration of struct node_int so we can use it in future code.
-struct node_int;
-
 // a convenient way to avoid adding 'struct node_init *' every time. 
-typedef struct node_int *node;
+typedef struct Node *Node;
 
 // function declarations we want to be able to use.
-void init_node(node *n, int value);
-int get_node_value(node n);
-node get_next_node(node n);
-void set_next_node(node current, node next);
+void init_node(Node *self, int value);
+int get_node_value(Node self);
+Node get_next_node(Node self);
+void set_next_node(Node current, Node next);

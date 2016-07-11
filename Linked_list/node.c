@@ -5,20 +5,25 @@
  * its list with.
  */
 
-#include "node_lib.h"
+#include "node.h"
 
 /* A type node, which holds an int value and a pointer to the next node */
-struct node_int
+struct Node
 {
 	int value;
-	node next;
+	Node next;
 };
 
 /* Create a new node, set the value of the node and set its next to NULL. */
-void init_node(node *n, int value)
+void init_node(Node *n, int value)
 {
 	// Initialise and dynamically allocate memory for a new node. 
-	node new_node = (node)malloc(sizeof(struct node_int));
+    Node new_node = NULL;
+    
+    if ((new_node = malloc(sizeof(*new_node))) == NULL) {
+        perror("Error: allocation of new node failed\n");
+        exit(EXIT_FAILURE);
+    }
 	
 	// Initialise the fields of the node.
 	new_node->value = value;
@@ -29,19 +34,19 @@ void init_node(node *n, int value)
 }
 
 /* Return the value of the node passed in as its argument. */
-int get_node_value(node n)
+int get_node_value(Node n)
 {
 	return n->value;
 }
 
 /* Return the current node (passed in as an argument) and return its next. */
-node get_next_node(node n)
+Node get_next_node(Node n)
 {
 	return n->next;
 }
 
 /* Point the current node's next field to the node "next". */
-void set_next_node(node current, node next)
+void set_next_node(Node current, Node next)
 {
 	current->next = next;
 }

@@ -5,7 +5,8 @@
  * interfaces with driver files in order to put it together.
  */
  
-#include "linked_list_lib.h"
+#include "linked_list.h"
+#include <stdlib.h>
 
 int main()
 {

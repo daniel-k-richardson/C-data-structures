@@ -4,26 +4,34 @@
  * Purpose: A linked list implementation for a youtube tutorial.
  */
 
-#include "linked_list_lib.h"
+#include "linked_list.h"
+#include "node.h"
 
 /* A new linked_list_int type that will represent a linked list */
 struct linked_list_int
 {
-	node first;
+	Node head;
+    Node tail;
 };
 
 /* Create and initialise a linked list. */
 void linked_list_init(linked_list *l)
 {
 	// Initialise and dynamically create a new list in memory.
-	linked_list new_list = (linked_list)malloc(sizeof(struct linked_list_int));
-	new_list->first = NULL;
+    linked_list new_list = NULL;
+    
+    if ((new_list = malloc(sizeof(*new_list))) == NULL ) {
+        perror("Error: could not allocate memory for list\n");
+        exit(EXIT_FAILURE);
+    }
+	new_list->head = NULL;
+    new_list->tail = NULL;
 }
 
 /* Check whether or not the list is empty. */
-bool is_empty(linked_list l)
+bool is_empty(linked_list self)
 {
-	if (l->first == NULL)
+	if (self->head == NULL)
 	{
 		return true;
 	}
@@ -39,27 +47,24 @@ bool is_empty(linked_list l)
  *	
  * in other words, link the new node to the list.
  */
-void add_element(linked_list *l, int value)
+void add_element(linked_list *self, int value)
 {
-	// NOTE the static keyword keeps the last updated value assigned to it.
-	static node current = NULL;
-	node new_node = NULL;
-	node first = (*l)->first;
+	Node current = NULL;
+	Node new_node = NULL;
 	
+    current = (*self)->head;
 	init_node(&new_node, value);
 	
-	// Singleton case, there are no elements in our linked list.
-	if (is_empty((*l)))
+	if (is_empty((*self)))
 	{
-		current = new_node;
-		first = new_node;
-		(*l)->first = new_node;
+        (*self)->head = new_node;
+        (*self)->tail = (*self)->head;
 	}
 	else
 	{
-		// General case, add the new node to the end of the list.
-		set_next_node(current, new_node);
-		current = get_next_node(current);
+        set_next_node((*self)->tail, new_node);
+        (*self)->tail = get_next_node((*self)->tail);
+
 	}
 }
 
@@ -67,9 +72,9 @@ void add_element(linked_list *l, int value)
  * Does what it says on the tin - traverses through all the nodes in the list
  * and prints those values out to the console.
  */	
-void traverse(linked_list l)
+void traverse(linked_list self)
 {
-	node current = l->first;
+	Node current = self->head;
 	
 	while (current != NULL)
 	{

@@ -5,7 +5,6 @@
  * Purpose: API for the 'linked_listDriver.c'
 */
 
-#include "node_lib.h"
 #include <stdbool.h>
 
 struct linked_list_int;
