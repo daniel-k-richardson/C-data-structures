@@ -5,10 +5,14 @@
  *
  */
 
-struct Stack;
-typedef struct Stack stack;
+#ifndef STACK_H
+#define STACK_H
 
-stack *create_stack();
-void push(stack *current_stack, void *data);
-void *top(stack *current_stack);
-void pop(stack *current_stack);
+typedef struct Stack *Stack;
+
+Stack create_stack();
+void push(Stack current_stack, void *data);
+void *top(Stack current_stack);
+void pop(Stack current_stack);
+
+#endif

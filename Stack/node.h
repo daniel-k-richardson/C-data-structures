@@ -4,7 +4,10 @@
  * Purpose:
  *
  */
- 
+
+#ifndef NODE_H
+#define NODE_H
+
 #include <stdio.h>
 #include <stdlib.h>
  
@@ -16,3 +19,5 @@ void set_previous(node **current, node **new_node);
 node *get_previous(node *current);
 void *get_data(node *current);
 void destroy_node(node *node_to_destroy);
+
+#endif

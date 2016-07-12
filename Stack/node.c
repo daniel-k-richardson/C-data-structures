@@ -27,10 +27,9 @@ node *create_node(void *data)
 {
 	node *new_node = (node *)malloc(sizeof(node));
  	
-	if (new_node == NULL)
-	{
- 		fprintf(stderr, "Issue occurred durring memory allocation in create_node()");
-		exit(1);
+	if (new_node == NULL) {
+ 		perror("Issue occurred durring memory allocation in create_node()\n");
+		exit(EXIT_FAILURE);
  	}
 	new_node->data = data;
 	new_node->previous = NULL;
@@ -88,8 +87,8 @@ void *get_data(node *current)
  */
 void destroy_node(node *node_to_destroy)
 {
-	if (node_to_destroy != NULL)
-	{
+	if (node_to_destroy != NULL) {
 		free(node_to_destroy);
 		node_to_destroy = NULL;
 	}
+}

@@ -13,7 +13,7 @@
 int main()
 {
 	// Declare and initialise a stack 
-	stack *new_stack = create_stack();
+	Stack new_stack = create_stack();
 	
 	// Elements to push onto the stack.
 	char *name1 = "Daniel";
