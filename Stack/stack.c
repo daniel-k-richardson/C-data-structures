@@ -12,7 +12,7 @@
 /* Represents our stack data type */
 struct Stack
 {
-	node *top;
+    Node top;
 };
 
 /*
@@ -26,18 +26,19 @@ struct Stack
 Stack create_stack()
 {
     Stack new_stack = NULL;
+    
     if ((new_stack = (Stack)malloc(sizeof(*new_stack))) == NULL) {
-		perror("Could not allocate memory for new stack inside create_stack()");
-		exit(EXIT_FAILURE);
-	}
-	new_stack->top = NULL;
-	
-	return new_stack;
+        perror("Could not allocate memory for new stack inside create_stack()");
+        exit(EXIT_FAILURE);
+    }
+    new_stack->top = NULL;
+    
+    return new_stack;
 }
 
 /*
  * Check whether or not the stack has elements.
- *	
+ *
  * Parameters:
  * current_stack to check whether or not it is empty.
  *
@@ -46,12 +47,12 @@ Stack create_stack()
 bool is_stack_empty(Stack current_stack)
 {
     bool is_empty = false;
-
-	if (current_stack->top == NULL) {
-		is_empty = true;
-	}
-
-	return is_empty;
+    
+    if (current_stack->top == NULL) {
+        is_empty = true;
+    }
+    
+    return is_empty;
 }
 
 /*
@@ -62,17 +63,16 @@ bool is_stack_empty(Stack current_stack)
  * current_stack to push item on.
  * data is the item being pushed.
  *
- * Return: void	
+ * Return: void
  */
 void push(Stack current_stack, void *data)
 {
-	node *new_node = create_node(data);
-	
-	/* General case, the stack is not empty */
-	if (!is_stack_empty(current_stack)) {
-		set_previous(&current_stack->top, &new_node);
-	}
-	current_stack->top = new_node;
+    Node new_node = create_node(data);
+    
+    if (!is_stack_empty(current_stack)) {
+        set_next(current_stack->top, new_node);
+    }
+    current_stack->top = new_node;
 }
 
 /*
@@ -85,7 +85,7 @@ void push(Stack current_stack, void *data)
  */
 void *top(Stack current_stack)
 {
-	return get_data(current_stack->top);
+    return get_data(current_stack->top);
 }
 
 /*
@@ -94,15 +94,15 @@ void *top(Stack current_stack)
  * Parameters:
  * current_stack is the stack to pop from.
  *
- * Returns: void.	
+ * Returns: void.
  */
-void pop(Stack current_stack)
+void pop(Stack self)
 {
-	node *top = current_stack->top;
-
-	if (top != NULL) {
-		current_stack->top = get_previous(top);
-		destroy_node(top);
-	}
-
+    Node temp = self->top;
+    
+    if (self->top != NULL) {
+        self->top = get_next(self->top);
+        destroy_node(temp);
+    }
+    
 }
