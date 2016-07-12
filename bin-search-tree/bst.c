@@ -89,6 +89,12 @@ BST add_element_to_BST(BST self, long value)
     return self;
 }
 
+void free_node(BST *self_p)
+{
+    free(*self_p);
+    *self_p = NULL;
+}
+
 /* delete_element_from_BST: Searches the BST for the target(student_id), if it
  * is found, then remove it from the BST. Returns the new BST back to the caller.
  * Params: the BST to delete an item from and target to search the BST for.
@@ -101,19 +107,16 @@ BST delete_element_from_BST(BST self, long target)
     }
     if (target < self->value) {
         self->left = delete_element_from_BST(self->left, target);
-        
     } else if (target > self->value) {
         self->right = delete_element_from_BST(self->right, target);
     } else {
         if (self->left == NULL) {
             BST temp = self->right;
-            free(self);
-            self = NULL;
+            free_node(&self);
             return temp;
         } else if (self->right == NULL) {
             BST temp = self->left;
-            free(self);
-            self = NULL;
+            free_node(&self);
             return temp;
         } else {
             BST temp = find_min(self->right);
@@ -189,7 +192,6 @@ void destroy_tree(BST *self)
     if (*self != NULL) {
         destroy_tree(&(*self)->left);
         destroy_tree(&(*self)->right);
-        free(*self);
-        *self = NULL;
+        free_node(self);
     }
 }
