@@ -174,7 +174,6 @@ bool search_BST(BST self, long target)
     if (self != NULL) {
         if (self->value == target) {
             return true;
-            
         } else if (self->value > target) {
             return search_BST(self->left, target);
         } else {
