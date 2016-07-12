@@ -99,27 +99,22 @@ BST delete_element_from_BST(BST self, long target)
     if (self == NULL) {
         return NULL;
     }
-    
     if (target < self->value) {
         self->left = delete_element_from_BST(self->left, target);
         
     } else if (target > self->value) {
         self->right = delete_element_from_BST(self->right, target);
-        
-        
     } else {
         if (self->left == NULL) {
             BST temp = self->right;
             free(self);
             self = NULL;
             return temp;
-            
         } else if (self->right == NULL) {
             BST temp = self->left;
             free(self);
             self = NULL;
             return temp;
-            
         } else {
             BST temp = find_min(self->right);
             self->value = temp->value;
