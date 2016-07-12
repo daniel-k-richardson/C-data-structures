@@ -82,7 +82,6 @@ BST add_element_to_BST(BST self, long value)
     
     if (value < self->value) {
         self->left = add_element_to_BST(self->left, value);
-        
     } else {
         self->right = add_element_to_BST(self->right, value);
     }
