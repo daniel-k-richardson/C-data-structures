@@ -22,6 +22,8 @@ int main(void)
     }
     preorder(tree);
     destroy_tree(&tree);
+    printf("....................destroy...................\n");
+    inorder(tree);
     
     return EXIT_SUCCESS;
 }
